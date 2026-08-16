@@ -16,7 +16,6 @@ export default function Navbar() {
     
     if (location.pathname !== '/') {
       navigate('/', { state: { scrollToHash: hash } });
-      // If we navigate to Home, we let the Home component handle scrolling in useEffect
     } else {
       if (hash === '' || hash === '#') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -30,7 +29,7 @@ export default function Navbar() {
   };
 
   return (
-    <header>
+    <header className="main-header">
       <div className="navlist">
         <nav className="navbar" id="nav">
           <div className="logo" onClick={() => handleLinkClick('#')} style={{ cursor: 'pointer' }}>
@@ -43,6 +42,7 @@ export default function Navbar() {
               <li><span onClick={() => handleLinkClick('#about')} style={{ cursor: 'pointer' }}>About</span></li>
               <li><span onClick={() => handleLinkClick('#projects')} style={{ cursor: 'pointer' }}>Projects</span></li>
               <li><span onClick={() => handleLinkClick('#journey')} style={{ cursor: 'pointer' }}>Journey</span></li>
+              <li><span onClick={() => handleLinkClick('#toolbox')} style={{ cursor: 'pointer' }}>Skills</span></li>
               <li><span onClick={() => alert('Blog coming soon!')} style={{ textDecoration: 'none', cursor: 'pointer' }}>Blog</span></li>
             </ul>
           </div>
@@ -50,14 +50,14 @@ export default function Navbar() {
           <div className="header-btn" id="contactDropdownContainer">
             <span 
               onClick={() => handleLinkClick('#contact')} 
-              className="btn1" 
+              className="btn1 nav-cta-btn" 
               style={{ textDecoration: 'none', cursor: 'pointer', display: 'inline-block', textAlign: 'center' }}
             >
               Contact me
             </span>
           </div>
 
-          <div className="menu-icon" onClick={toggleMenu}>
+          <div className="menu-icon" onClick={toggleMenu} aria-label="Toggle navigation">
             <div className={`menu-container ${menuActive ? 'change' : ''}`}>
               <div className="bar1"></div>
               <div className="bar2"></div>
@@ -83,27 +83,45 @@ export default function Navbar() {
                   initial={{ x: '100%' }}
                   animate={{ x: 0 }}
                   exit={{ x: '100%' }}
-                  transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                  transition={{ type: 'spring', damping: 25, stiffness: 220 }}
                 >
-                  <span onClick={() => handleLinkClick('#')} style={{ cursor: 'pointer' }}>Home</span>
-                  <span onClick={() => handleLinkClick('#about')} style={{ cursor: 'pointer' }}>About</span>
-                  <span onClick={() => handleLinkClick('#projects')} style={{ cursor: 'pointer' }}>Projects</span>
-                  <span onClick={() => handleLinkClick('#journey')} style={{ cursor: 'pointer' }}>Journey</span>
-                  <span onClick={() => handleLinkClick('#contact')} style={{ cursor: 'pointer' }}>Contact Me</span>
-                  <span onClick={() => { setMenuActive(false); alert('Blog coming soon!'); }} style={{ cursor: 'pointer' }}>Blog</span>
-                  <div className="social-icons">
-                    <a href="https://github.com/ravikumar-3481" target="_blank" rel="noreferrer">
-                      <i className="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ravi-vishwakarma67" target="_blank" rel="noreferrer">
-                      <i className="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.instagram.com/i_am_ravi.07?igsh=MWp0MnQ5b29xZmVmcg==" target="_blank" rel="noreferrer">
-                      <i className="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://x.com/I_am_ravi09" target="_blank" rel="noreferrer">
-                      <i className="fa-brands fa-x-twitter"></i>
-                    </a>
+                  <div className="mobile-menu-header">
+                    <div className="mobile-menu-logo" onClick={() => handleLinkClick('#')}>
+                      <b>{'{'}</b>Ravi<b>{'}'}</b>
+                    </div>
+                    <button className="mobile-menu-close" onClick={toggleMenu} aria-label="Close menu">
+                      <i className="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+
+                  <div className="mobile-menu-links">
+                    <span onClick={() => handleLinkClick('#')}>Home</span>
+                    <span onClick={() => handleLinkClick('#about')}>About</span>
+                    <span onClick={() => handleLinkClick('#projects')}>Projects</span>
+                    <span onClick={() => handleLinkClick('#journey')}>Journey</span>
+                    <span onClick={() => handleLinkClick('#toolbox')}>Skills</span>
+                    <span onClick={() => handleLinkClick('#contact')}>Contact Me</span>
+                    <span onClick={() => { setMenuActive(false); alert('Blog coming soon!'); }}>Blog</span>
+                  </div>
+
+                  <div className="mobile-menu-footer">
+                    <button onClick={() => handleLinkClick('#contact')} className="mobile-contact-btn">
+                      Contact Me
+                    </button>
+                    <div className="social-icons">
+                      <a href="https://github.com/ravikumar-3481" target="_blank" rel="noreferrer" aria-label="GitHub">
+                        <i className="fa-brands fa-github"></i>
+                      </a>
+                      <a href="https://www.linkedin.com/in/ravi-vishwakarma67" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                        <i className="fa-brands fa-linkedin"></i>
+                      </a>
+                      <a href="https://www.instagram.com/i_am_ravi.07" target="_blank" rel="noreferrer" aria-label="Instagram">
+                        <i className="fa-brands fa-instagram"></i>
+                      </a>
+                      <a href="https://x.com/I_am_ravi09" target="_blank" rel="noreferrer" aria-label="X Twitter">
+                        <i className="fa-brands fa-x-twitter"></i>
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               </>

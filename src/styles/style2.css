@@ -27,13 +27,13 @@
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 390px));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     justify-content: center;  
-    gap: 35px;
-   /* max-width: 1200px;*/
-    margin: 6rem auto 0;
-    padding: 0 1.5rem;
+    gap: 25px;
+    margin: 3rem auto 0;
+    padding: 0 1rem;
     align-items: stretch;
+    max-width: 1280px;
 }
 
 .project-card {
